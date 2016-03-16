@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8" />
+<title>AngularJS TIPS</title>
+</head>
+<body ng-controller="myController2">
+{{1 + 2}}
+{{msg}}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-cookies.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.min.js"></script>
+<script>
+// 1myAppモジュールを作成
+var app = angular.module('myApp', []);
+// 3myAppモジュールにmyControllerコントローラーを登録
+app.controller('myController', function($scope) {
+  $scope.msg = 'Hello, AngularJS!';
+});
+
+// mySubモジュールの配下にmyController2コントローラーを登録
+angular.module('mySub', [ 'ngCookies', 'ngSanitize' ])
+  .controller('myController2', function($scope) {
+    $scope.msg = 'Thank you, AngularJS!';
+  });
+
+// myAppモジュールはmySubモジュールに依存
+angular.module('myApp', [ 'mySub' ])
+  .controller('myController', function($scope) {
+    $scope.msg = 'Hello, AngularJS!';
+  });
+
+</script>
+</body>
+</html>

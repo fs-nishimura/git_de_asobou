@@ -1,0 +1,1 @@
+$(window).load(function(){var i=$(window).height(),n=$("body").innerHeight()-84,h=$("#main").height();if(i>n){var a=i-n+h;$("#main").height(a)}});
