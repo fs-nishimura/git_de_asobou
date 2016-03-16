@@ -1,1 +1,0 @@
-$(function(){$("a[href^=#]").click(function(){var t=700,r=$(this).attr("href"),a=$("#"==r||""==r?"html":r),e=a.offset().top;return $($.browser.safari?"body":"html").animate({scrollTop:e},t,"easeInOutQuart"),!1})});
