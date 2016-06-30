@@ -1,0 +1,164 @@
+/**
+ * Mixin
+ * -----------------------------------------------------------------------------
+ */
+
+// -----------------------------------------
+// Media Query
+// -----------------------------------------
+$bp-tb     : 979px;
+$bp-sp     : 479px;
+
+@mixin media($media-width){
+	@if $media-width == sp{
+		@media only screen and (max-width:$bp-sp){
+			@content;
+		}
+	} @else if $media-width == tb{
+		@media only screen and (max-width:$bp-tb){
+			@content;
+		}
+	} @else if $media-width == tbonly{
+		@media only screen and (min-width: 641px) and (max-width:$bp-tb){
+			@content;
+		}
+	}
+}
+
+// -----------------------------------------
+// Clearfix
+// -----------------------------------------
+
+@mixin clearfix {
+        @if $support-ie6 or $support-ie7 {
+            *zoom: 1;
+        }
+        &:after {
+            content: "."; 
+            display: block;
+            clear: both;
+            height: 0; 
+            visibility: hidden;
+        }
+}
+
+// -----------------------------------------
+// transition
+// -----------------------------------------
+//normal
+@mixin trans($selector:all,$time:1s){
+	  transition: $selector $time;
+	  -moz-transition: $selector $time;
+	  -webkit-transition: $selector $time;
+	  -o-transition: $selector $time;
+}
+
+// for opacity
+@mixin transEase($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+	-moz-transition: $selector $time cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+	-o-transition: $selector $time cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+	transition: $selector $time cubic-bezier(0.250, 0.100, 0.250, 1.000);
+}
+
+// for translate from bottom
+@mixin transEaseInOut($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0,0.7,0.3,1);
+	-moz-transition: $selector $time cubic-bezier(0,0.7,0.3,1);
+	-o-transition: $selector $time cubic-bezier(0,0.7,0.3,1);
+	transition: $selector $time cubic-bezier(0,0.7,0.3,1);
+}
+
+// for slider opacity
+@mixin transEaseInOutSine($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0.445, 0.050, 0.550, 0.950);
+	-moz-transition: $selector $time cubic-bezier(0.445, 0.050, 0.550, 0.950);
+	-o-transition: $selector $time cubic-bezier(0.445, 0.050, 0.550, 0.950);
+	transition: $selector $time cubic-bezier(0.445, 0.050, 0.550, 0.950);
+}
+
+// for opacity
+@mixin transEaseOut($selector:all,$time:1s){
+	-webkit-transition: $selector $time ease-out;
+	-moz-transition: $selector $time ease-out;
+	-o-transition: $selector $time ease-out;
+	transition: $selector $time ease-out;
+}
+// for header menu open
+@mixin transInOutCubic($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0.5, 0, 0.08, 1);
+	-moz-transition: $selector $time cubic-bezier(0.5, 0, 0.08, 1);
+	-o-transition: $selector $time cubic-bezier(0.5, 0, 0.08, 1);
+	transition: $selector $time cubic-bezier(0.5, 0, 0.08, 1);
+}
+// for zoom
+@mixin transOutQuart($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0.075, 0.82, 0.165, 1);
+	-moz-transition: $selector $time cubic-bezier(0.075, 0.82, 0.165, 1);
+	-o-transition: $selector $time cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition: $selector $time cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+// for slider
+@mixin transOutCubic($selector:all,$time:1s){
+	-webkit-transition: $selector $time cubic-bezier(0.25, 0.1, 0.25, 1);
+	-moz-transition: $selector $time cubic-bezier(0.25, 0.1, 0.25, 1);
+	-o-transition: $selector $time cubic-bezier(0.25, 0.1, 0.25, 1);
+	transition: $selector $time cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+// -----------------------------------------
+// calc()
+// -----------------------------------------
+@mixin calc($property, $expression) { 
+  #{$property}: -moz-calc(#{$expression}); 
+  #{$property}: -o-calc(#{$expression}); 
+  #{$property}: -webkit-calc(#{$expression}); 
+  #{$property}: calc(#{$expression}); 
+}
+
+// -----------------------------------------
+// Font size
+// -----------------------------------------
+@mixin fontsize($fontsize:1rem,$lineheight:1.5rem,$color:$textColor,$fontweight:inherit){
+	font-size:$fontsize;
+	line-height:$lineheight;
+	color:$color;
+	font-weight:$fontweight;
+	margin-top: -1 * ($lineheight - $fontsize)/2;
+	margin-bottom: -1 * ($lineheight - $fontsize)/2;
+}
+
+// -----------------------------------------
+// Absolute position(必要なところだけ入力)
+// -----------------------------------------
+@mixin abs ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+     position: absolute;
+     top: $top;
+     right: $right;
+     bottom: $bottom;
+     left: $left;
+}
+
+// -----------------------------------------
+// fixed position(必要なところだけ入力)
+// -----------------------------------------
+@mixin fixed ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+     position: fixed;
+     top: $top;
+     right: $right;
+     bottom: $bottom;
+     left: $left;
+}
+
+// -----------------------------------------
+// Opacity IE8対応版
+// -----------------------------------------
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    filter: alpha(opacity=$opacity * 100);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity * 100})";// ie 8 
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    zoom:1;
+}

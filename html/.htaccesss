@@ -1,0 +1,12 @@
+# prevent iframe accesss
+Header set X-FRAME-OPTIONS "DENY"
+
+# Show svg
+AddType image/svg+xml .svg
+
+# protect wp-config.php
+Options -Indexes
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
