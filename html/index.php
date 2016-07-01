@@ -16,7 +16,8 @@
 
 	// 個別設定
 	$page_class       = "page-home"; // ページクラスが必要な場合
-	$page_title       = "xxx"; // ページタイトル
+	$page_title       = "ああああ
+	"; // ページタイトル
 	$page_keywords    = ""; // ページ特有のキーワードがある場合
 	$page_description = ""; // ページ特有のdescriptionがある場合
 
